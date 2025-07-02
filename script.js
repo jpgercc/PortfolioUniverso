@@ -226,11 +226,11 @@ function initContentWarning() {
     }
     
     // Fechar com ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
-            hidePopup();
-        }
-    });
+    //document.addEventListener('keydown', function(e) {
+    //    if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
+    //        window.location.href = 'index.html';
+    //    }
+    //});
     
     function hidePopup() {
         popup.classList.add('hidden');
