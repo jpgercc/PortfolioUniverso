@@ -1,5 +1,8 @@
 // Mobile Navigation
 document.addEventListener('DOMContentLoaded', function() {
+    // Popup de Aviso de Conteúdo
+    initContentWarning();
+    
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
@@ -182,4 +185,62 @@ function toggleTheme() {
 const savedTheme = storage.get('theme');
 if (savedTheme === 'dark') {
     document.body.classList.add('dark-theme');
+}
+
+// Função para inicializar o popup de aviso de conteúdo
+function initContentWarning() {
+    const popup = document.getElementById('contentWarning');
+    const acceptBtn = document.getElementById('acceptBtn');
+    const declineBtn = document.getElementById('declineBtn');
+    
+    if (!popup) return; // Se não existir o popup, não faz nada
+    
+    // Verificar se o usuário já aceitou o aviso (usando sessionStorage para manter durante a sessão)
+    const hasAccepted = sessionStorage.getItem('contentWarningAccepted');
+    
+    if (hasAccepted) {
+        popup.classList.add('hidden');
+        return;
+    }
+    
+    // Mostrar o popup
+    popup.classList.remove('hidden');
+    
+    // Bloquear scroll do body enquanto o popup estiver ativo
+    document.body.style.overflow = 'hidden';
+    
+    // Botão Continuar
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function() {
+            sessionStorage.setItem('contentWarningAccepted', 'true');
+            hidePopup();
+        });
+    }
+    
+    // Botão Voltar
+    if (declineBtn) {
+        declineBtn.addEventListener('click', function() {
+            // Redirecionar para a página inicial
+            window.location.href = 'index.html';
+        });
+    }
+    
+    // Fechar com ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
+            hidePopup();
+        }
+    });
+    
+    function hidePopup() {
+        popup.classList.add('hidden');
+        document.body.style.overflow = ''; // Restaurar scroll
+        
+        // Remover o popup do DOM após a animação
+        setTimeout(() => {
+            if (popup.classList.contains('hidden')) {
+                popup.style.display = 'none';
+            }
+        }, 300);
+    }
 }

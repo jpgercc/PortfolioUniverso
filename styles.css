@@ -836,3 +836,122 @@ body {
         background-color: var(--bg-secondary);
     }
 }
+
+/* Popup de Aviso de Conteúdo */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+}
+
+.popup-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.popup-content {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.popup-overlay.hidden .popup-content {
+    transform: scale(0.9);
+}
+
+.popup-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    position: relative;
+}
+
+.popup-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.popup-text {
+    padding: 2rem;
+    text-align: center;
+}
+
+.popup-text h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.popup-text p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.popup-buttons .btn {
+    min-width: 120px;
+    flex: 1;
+    max-width: 200px;
+}
+
+/* Responsivo para o popup */
+@media (max-width: 480px) {
+    .popup-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .popup-text {
+        padding: 1.5rem;
+    }
+    
+    .popup-text h2 {
+        font-size: 1.25rem;
+    }
+    
+    .popup-buttons {
+        flex-direction: column;
+    }
+    
+    .popup-buttons .btn {
+        max-width: none;
+    }
+}
+
+/* Dark mode para o popup */
+@media (prefers-color-scheme: dark) {
+    .popup-content {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+    }
+}
