@@ -167,7 +167,8 @@ body {
 }
 
 .btn-secondary {
-    background: transparent;
+    /*background: transparent;*/
+    background: #fbffb7;
     color: var(--secondary-color);
     border-color: #fbffb7;
 }
