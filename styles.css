@@ -146,10 +146,13 @@ body {
     text-decoration: none;
     color: var(--secondary-color);
     font-weight: 500;
-    transition: var(--bg-secondary);
+    transition: var(--transition);
     position: relative;
 }
-
+.hero-link:hover,
+.hero-link.active {
+    color: var(--bg-secondary);
+}
 .hero-buttons {
     display: flex;
     gap: 1rem;
