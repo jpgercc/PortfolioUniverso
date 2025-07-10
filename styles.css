@@ -153,6 +153,7 @@ body {
 .hero-link.active {
     color: var(--bg-secondary);
 }
+
 .hero-buttons {
     display: flex;
     gap: 1rem;
